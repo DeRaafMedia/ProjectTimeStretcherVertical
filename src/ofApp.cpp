@@ -111,34 +111,26 @@ void ofApp::keyPressed(int key){
             numberOfPortions++;
         }
     }
-    
     if (key=='z') {
         if (numberOfPortions > 1) {
             numberOfPortions--;
         }
     }
-    
-    // frames
     if (key == 's') {
         if (numberOfFramesToRecord < maximumNumberOfFramesToRecord) {
             numberOfFramesToRecord++;
         }
     }
-    
     if (key == 'x') {
         if (numberOfFramesToRecord > numberOfPortions) {
             numberOfFramesToRecord--;
         }
     }
-    
-    // zoom
     if (key == 'd') {
         if (zoom < 5) {
             zoom ++;
         }
-        
     }
-    
     if (key == 'c') {
         if (zoom > 1) {
             zoom --;
