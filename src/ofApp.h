@@ -34,7 +34,7 @@ class ofApp : public ofBaseApp{
         int maximumNumberOfPortions;
         int imageWidth, imageHeight, imageColors;
         int portionWidth, portionHeight, portionModulus;
-        int zoom;
+        float zoom;
         int numberOfPortions;
         ofTrueTypeFont Verdana;
 };
