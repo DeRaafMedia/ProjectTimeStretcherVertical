@@ -30,20 +30,14 @@ void ofApp::setup(){
     for(int i = 0; i < maximumNumberOfFramesToRecord; i++){
         slitData[i] = new unsigned char[imageWidth * imageHeight * imageColors];
     }
-    //----------------------------------------------------------
     Portions = new Portion * [maximumNumberOfPortions];
     for(int i = 0; i < maximumNumberOfPortions; i++){
         Portions[i] = new Portion;
         Portions[i]-> width = imageWidth;
     }
-    //----------------------------------------------------------
     videoStream.setVerbose(true);
     videoStream.initGrabber(imageWidth, imageHeight);
-    //----------------------------------------------------------
-    delayed.allocate(imageWidth, imageHeight, GL_RGB);
-    //----------------------------------------------------------
     Verdana.loadFont("Verdana.ttf", 8, false, true);
-    //----------------------------------------------------------
     slitXAxis = new unsigned char [imageWidth * imageHeight * imageColors];
     slitTexture.allocate(imageWidth, imageHeight, GL_RGB);
 }
@@ -58,7 +52,6 @@ void ofApp::update(){
         portionWidth = imageWidth;
         portionHeight = imageHeight / numberOfPortions;
         portionModulus = imageHeight % numberOfPortions;
-        int tempYAxis = imageHeight;
         int positionInImage;
         if(!reverse){
             positionInImage = 0;
@@ -96,12 +89,12 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofSetColor(230, 230, 255);
-    ofBackground(1, 1, 1);
-    slitTexture.draw(300, 50, imageWidth * zoom, imageHeight * zoom);
+    ofSetColor(255, 255, 255);
+    ofBackground(0, 0, 0);
+    slitTexture.draw(0, 0, imageWidth * zoom, imageHeight * zoom);
     char tempString[255];
     sprintf(tempString, "[ a/z ] --> portions: %i           \n[ s/x ] --> frames in buffer: %i            \n[ d/c ] --> zoom: %i            \n[r] --> Reverse direction.", numberOfPortions, numberOfFramesToRecord, zoom);
-    ofDrawBitmapString(tempString, 10, 600);
+    ofDrawBitmapString(tempString, 50, 50);
 }
 
 //--------------------------------------------------------------
@@ -128,12 +121,12 @@ void ofApp::keyPressed(int key){
     }
     if (key == 'd') {
         if (zoom < 5) {
-            zoom ++;
+            zoom = zoom + 0.05;
         }
     }
     if (key == 'c') {
         if (zoom > 1) {
-            zoom --;
+            zoom = zoom -0.05;
         }
     }
     if (key == 'r') {
